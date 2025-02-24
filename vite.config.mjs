@@ -13,6 +13,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/swat-soda",
   plugins: [
     VueRouter(),
     Layouts(),
@@ -46,7 +47,6 @@ export default defineConfig({
       vueTemplate: true,
     })
   ],
-  base: "/swat-soda",
   define: { 'process.env': {} },
   resolve: {
     alias: {
