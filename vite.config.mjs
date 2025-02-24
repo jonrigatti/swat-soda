@@ -46,7 +46,7 @@ export default defineConfig({
       vueTemplate: true,
     })
   ],
-  base: "/swat-soda",
+  base: "https://jonrigatti.github.io/swat-soda",
   define: { 'process.env': {} },
   resolve: {
     alias: {
