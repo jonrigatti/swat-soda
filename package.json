@@ -1,5 +1,6 @@
 {
   "name": "swat",
+  "homepage": "https://jonrigatti.github.io/swat-soda/",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",

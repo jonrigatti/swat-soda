@@ -44,8 +44,9 @@ export default defineConfig({
         enabled: true,
       },
       vueTemplate: true,
-    }),
+    })
   ],
+  base: "/swat-soda",
   define: { 'process.env': {} },
   resolve: {
     alias: {
