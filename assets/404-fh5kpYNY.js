@@ -1,1 +1,0 @@
-import{_ as t}from"./HelloWorldComponent-D2ZIS1U7.js";import{c as e,o as r}from"./index-NiyRU3vx.js";import"./VCard-Cwa_g2t9.js";const s={__name:"404",setup(_){return(c,n)=>{const o=t;return r(),e(o)}}};export{s as default};
