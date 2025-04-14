@@ -1,0 +1,1 @@
+import{_ as e}from"./HelloWorldComponent-D2ZIS1U7.js";import{c as t,o as n}from"./index-NiyRU3vx.js";import"./VCard-Cwa_g2t9.js";const s={__name:"index",setup(r){return(_,c)=>{const o=e;return n(),t(o)}}};export{s as default};
