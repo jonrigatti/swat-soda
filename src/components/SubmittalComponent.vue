@@ -26,15 +26,15 @@
                             <PriorityMenuComponent :submittalProp="submittal" :color="color" :showLabel="true" />
                         </v-col>
                         <v-col>
-                            <v-date-input v-model="submittal.receivedDate" dense clearable label="Received Date" prepend-icon="mdi-calendar-today"></v-date-input>
+                            <!-- <v-date-input v-model="submittal.receivedDate" dense clearable label="Received Date" prepend-icon="mdi-calendar-today"></v-date-input>
                             <v-date-input v-model="submittal.needDate" dense clearable label="Need Date" prepend-icon="mdi-calendar-clock"></v-date-input>
-                            <v-date-input v-model="submittal.dispositionDate" dense clearable label="Disposition Date" prepend-icon="mdi-calendar-check"></v-date-input>
-                            <!-- <DatepickerComponent :dateProp="submittal.receivedDate" labelProp="Received Date"
+                            <v-date-input v-model="submittal.dispositionDate" dense clearable label="Disposition Date" prepend-icon="mdi-calendar-check"></v-date-input> -->
+                            <DatepickerComponent :dateProp="submittal.receivedDate" labelProp="Received Date"
                                 iconProp="mdi-calendar-today" @update-date="(date) => submittal.receivedDate = date" />
                             <DatepickerComponent :dateProp="submittal.needDate" labelProp="Need Date"
                                 iconProp="mdi-calendar-clock" @update-date="(date) => submittal.needDate = date" />
                             <DatepickerComponent :dateProp="submittal.dispositionDate" labelProp="Disposition Date"
-                                iconProp="mdi-calendar-check" @update-date="(date) => submittal.dispositionDate = date" /> -->
+                                iconProp="mdi-calendar-check" @update-date="(date) => submittal.dispositionDate = date" />
                         </v-col>
                     </v-row>
                 </v-container>

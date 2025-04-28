@@ -8,14 +8,14 @@
                 dark
                 multiple
             >
-                <v-btn v-for="project in projectsStore.projects" :key="project.name" :value="project.name">
+                <v-btn v-for="project in _.sortBy(projectsStore.projects,['name'])" :key="project.name" :value="project.name">
                     {{ project.name }}
                 </v-btn>
             </v-btn-toggle>
         </v-toolbar>
 
         <v-container fluid>
-            <v-card rounded v-for="project in projectsStore.projects" :key="project.name" class="ma-2" v-show="projectsToggle.includes(project.name)">
+            <v-card rounded v-for="project in _.sortBy(projectsStore.projects,['name'])" :key="project.name" class="ma-2" v-show="projectsToggle.includes(project.name)">
                 <v-card-title class="purple darken-3 pa-4 ma-0">
                     <h1>{{project.name}}</h1>                  
                 </v-card-title>
@@ -76,9 +76,10 @@
 
 <script setup>
     import { VueDraggableNext } from 'vue-draggable-next';
-    import { useSubmittalsStore } from '../stores/SubmittalsStore'
-    import { useProjectsStore } from '../stores/ProjectsStore'
-    import { ref } from 'vue'
+    import { useSubmittalsStore } from '../stores/SubmittalsStore';
+    import { useProjectsStore } from '../stores/ProjectsStore';
+    import { ref } from 'vue';
+    import _ from 'lodash';
 
     const submittalsStore = useSubmittalsStore();
 

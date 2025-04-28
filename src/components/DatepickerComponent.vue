@@ -10,7 +10,7 @@
         >
             <template v-slot:activator="{ props }">
                 <v-text-field
-                    :value="dateConst"
+                    :model-value="dateConst"
                     class="my-2"
                     dense
                     clearable
@@ -23,6 +23,7 @@
             </template>
             <v-date-picker
                 v-model="dateConst"
+                hide-header
                 @update:modelValue="selectDate($event)"
             ></v-date-picker>
         </v-menu>
@@ -61,7 +62,7 @@
     
     // const date = useDate();
     // const df = dayjs(props.dateProp).format('YY-MM-DD').toString();
-    const dateConst = ref(dayjs(props.dateProp).isValid() ? dayjs(props.dateProp).format('YYYY-MM-DD').toString() : '');
+    const dateConst = ref(dayjs(props.dateProp).isValid() ? dayjs(props.dateProp).format('M/D/YYYY').toString() : '');
     
     // const d = useDate();
     // const dateConst = ref([d.format(props.dateProp, 'keyboardDate')]);
@@ -83,7 +84,9 @@
         dateMenu.value = false;
         deleteDialog.value = false;
         props.dateProp = dayjs(date).toISOString();
+        dateConst.value = dayjs(date).format('M/D/YYYY').toString()
         console.log(props.dateProp);
+        console.log(dateConst.value);
         emit('update-date', props.returnISODate ? dayjs(date).toISOString() : dayjs(date).format('MM/DD/YYYY'));
     }
     const emit = defineEmits(['update-date']);

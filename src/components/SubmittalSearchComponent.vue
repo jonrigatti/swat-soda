@@ -2,16 +2,12 @@
     <div>        
         <v-card>
             <v-card-title class="pink pa-1 ma-0">
-                <v-icon large color="pink lighten-4">mdi-magnify</v-icon>
-                <h2>Submittal Query</h2>         
-                <v-spacer></v-spacer>
-                <v-btn icon @click="(v) => expanded = !expanded" >
-                    <v-icon class="toggleUpDown" :class='{ "rotate": !expanded }'>mdi-chevron-up</v-icon>
-                </v-btn>
+                <v-icon x-large color="pink lighten-4">mdi-magnify</v-icon>
+                Submittal Query
             </v-card-title>
         
             <v-card-text>
-                <v-container fluid v-show="expanded">
+                <v-container fluid>
                     <v-row>
                         <v-col>
                             <v-container fluid>
@@ -24,10 +20,10 @@
                                         <v-select v-model="qf.andOr" :items="['and', 'or']" class="fit pa-1 ma-1"></v-select>
                                     </v-col>
                                     <v-col>
-                                        <v-select v-model="qf.operator" item-text="text" item-value="value" :items="queryOperatorOptions" class="fit pa-1 ma-1"></v-select>    
+                                        <v-select v-model="qf.operator" item-title="text" item-value="value" :items="queryOperatorOptions" class="fit pa-1 ma-1"></v-select>    
                                     </v-col>
                                     <v-col cols="4">
-                                        <v-select v-model="qf.key" label="Search field" item-text="text" item-value="value" :items="queryKeyOptions" class="pa-1 ma-1"></v-select>
+                                        <v-select v-model="qf.key" label="Search field" item-title="text" item-value="value" :items="queryKeyOptions" class="pa-1 ma-1"></v-select>
                                     </v-col>
                                     <v-col cols="4">
                                         <v-text-field v-model="qf.value" label="Value" class="pa-1 ma-1" v-show="qf.key.type != 'Date'"></v-text-field>

@@ -1,17 +1,7 @@
 <template>
-  <v-app-bar
-    app
-    fixed
-    color="pink darken-4"
-    dark
-    dense
-    rounded
-  >
+  <v-app-bar app fixed color="pink darken-4" dark dense rounded>
     <template v-slot:img="{ props }">
-      <v-img
-        v-bind="props"
-        gradient="to top right, rgba(57, 17, 68,.7), rgba(172, 88, 166,.7)"
-      ></v-img>
+      <v-img v-bind="props" gradient="to top right, rgba(57, 17, 68,.7), rgba(172, 88, 166,.7)"></v-img>
     </template>
 
     <v-app-bar-title class="title">
@@ -29,37 +19,44 @@
       <v-icon>mdi-magnify-close</v-icon>
     </v-btn>
 
-    <v-btn-toggle
-      v-model="appStore.submittalView"
-      rounded
-      mandatory
-    >
-      <v-btn
-          icon
-          value="cards"
-        >
-          <v-icon>mdi-cards</v-icon>
-        </v-btn>
-        <v-btn
-          icon
-          value="table"
-        >
-          <v-icon>mdi-table</v-icon>
-        </v-btn>
-        <v-btn
-          icon
-          value="calendar"
-        >
-          <v-icon>mdi-calendar</v-icon>
+    <v-btn-toggle v-model="appStore.submittalView" rounded mandatory>
+      <v-btn icon value="cards">
+        <v-icon>mdi-cards</v-icon>
+      </v-btn>
+      <v-btn icon value="table">
+        <v-icon>mdi-table</v-icon>
+      </v-btn>
+      <v-btn icon value="calendar">
+        <v-icon>mdi-calendar</v-icon>
       </v-btn>
     </v-btn-toggle>
 
     <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
+
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item prepend-icon="mdi-plus" to="/addsubmittal">
+            <v-list-item-title>Add submittal</v-list-item-title> 
+          </v-list-item>
+          <v-list-item prepend-icon="mdi-baguette">
+            <v-list-item-title>This is a baguette</v-list-item-title> 
+          </v-list-item>
+          <v-list-item prepend-icon="mdi-candy">
+            <v-list-item-title>This is candy</v-list-item-title> 
+          </v-list-item>
+          <v-list-item prepend-icon="mdi-cog">
+            <v-list-item-title>Settings</v-list-item-title> 
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-btn>
 
     <template v-slot:extension>
-      <v-tabs>            
+      <v-tabs>
         <v-tab to="/">Home</v-tab>
         <v-tab to="/submittals">Submittals</v-tab>
         <v-tab to="/projects">Projects</v-tab>
@@ -69,9 +66,9 @@
 </template>
 
 <script setup>
-  import { useAppStore } from '../stores/AppStore';
+import { useAppStore } from '../stores/AppStore';
 
-  const appStore = useAppStore();
+const appStore = useAppStore();
 </script>
 
 <style scoped>

@@ -118,7 +118,7 @@
             <template v-slot:default="{ items }">
               <v-row>
                 <v-col v-for="(item) in items" :key="item._id" cols="12" sm="6" md="4" lg="3">
-                  <SubmittalComponent :submittal="item.raw" :color="submittalColor(item)" />
+                  <SubmittalComponent :submittal="item.raw" :color="submittalColor(item.raw.needDate, item.raw.dispositionDate)" />
                 </v-col>
               </v-row>
             </template>
@@ -164,7 +164,7 @@
       <v-data-table :headers="tableHeaders" :items="filteredSubmittals" item-key="submittalID"
         :sort-by="['submittalID', 'owner']" :sort-desc="[false, true]" multi-sort show-expand v-model:expanded="expanded">
         <template v-slot:[`item.submittalID`]="{ item }">
-          <v-sheet :color="submittalColor(item)" rounded class="d-flex justify-center pa-1 ma-0">{{ item.submittalID
+          <v-sheet :color="submittalColor(item.needDate, item.dispositionDate)" rounded class="d-flex justify-center pa-1 ma-0">{{ item.submittalID
           }}</v-sheet>
         </template>
 
@@ -203,7 +203,7 @@
         </template>
 
         <template v-slot:[`item.priority`]="{ item }">
-          <PriorityMenuComponent :submittalProp="item" :color="submittalColor(item)" />
+          <PriorityMenuComponent :submittalProp="item" :color="submittalColor(item.needDate, item.dispositionDate)" />
         </template>
 
         <template v-slot:[`item.save`]="{ item }">
@@ -375,10 +375,10 @@ const eventColor = (event) => {
   }
 }
 
-const submittalColor = (submittal) => {
+const submittalColor = (needDate, dispositionDate) => {
   // console.log(JSON.stringify(submittal));
-  const needDate = dayjs(submittal.needDate);
-  const diff = needDate.diff(dayjs(), 'day');
+  const nD = dayjs(needDate);
+  const diff = nD.diff(dayjs(), 'day');
   var color;
 
   if (diff < 0) {
@@ -395,7 +395,7 @@ const submittalColor = (submittal) => {
     color = 'green-darken-1'
   }
 
-  (submittal.dispositionDate != null) && (color = 'grey-darken-2');
+  (dispositionDate != null) && (color = 'grey-darken-2');
 
   return color;
 }

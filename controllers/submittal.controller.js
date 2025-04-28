@@ -267,7 +267,7 @@ exports.findDynamic = (req, res) => {
     .catch(err => {
         res.status(500).send({
             message: 
-                err.message || "Some error occurred while retrieving  queried submittals."
+                err.message || "Some error occurred while retrieving queried submittals."
         });
     });
 };

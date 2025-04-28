@@ -98,7 +98,7 @@ export const useSubmittalsStore = defineStore('SubmittalsStore', {
             SubmittalDataService.findDynamic(query)
             .then(response => {
                 this.submittals = response.data;
-                // console.log(response.data);
+                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
