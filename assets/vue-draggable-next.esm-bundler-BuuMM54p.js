@@ -1,4 +1,4 @@
-import{bt as Rt,ad as Yt,bu as ct}from"./index-DLS60IBE.js";/*!
+import{bt as Rt,ad as Yt,bu as ct}from"./index-D5e503us.js";/*!
   * vue-draggable-next v2.2.0
   * (c) 2023 Anish George
   * @license MIT
