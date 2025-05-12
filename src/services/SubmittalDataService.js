@@ -18,7 +18,7 @@ class SubmittalDataService {
         return http.get(`/submittals/${id}`);
     }
 
-    create(data) {
+    add(data) {
         return http.post("/submittals", data);
     }
 

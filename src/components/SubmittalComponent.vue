@@ -2,27 +2,17 @@
     <div>
         <v-card class="rounded-t-xl">
             <v-toolbar :color="color">
-                <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-
-                <v-toolbar-title>{{ submittal.submittalID }}</v-toolbar-title>
-
-                <v-spacer></v-spacer>
-
+                <v-toolbar-title :text="submittal.submittalID"></v-toolbar-title>
                 <v-btn icon @click="(v) => expanded = !expanded">
                     <v-icon class="toggleUpDown" :class='{ "rotate": !expanded }'>mdi-chevron-up</v-icon>
                 </v-btn>
             </v-toolbar>
-            <!-- <v-card-title :color="color" :class="`${color} pa-2`">
-                <h2>{{ submittal.submittalID }}</h2>
-                <v-spacer></v-spacer>
-
-            </v-card-title> -->
             <v-card-text>
                 <v-text-field v-model.lazy="submittal.description" label="Description"></v-text-field>
                 <v-container class="pa-0 ma-0">
                     <v-row>
                         <v-col>
-                            <v-text-field v-model.lazy="submittal.owner" label="Owner"></v-text-field>
+                            <v-text-field v-model.lazy="submittal.owner" label="Owner" min-width="200"></v-text-field>
                             <PriorityMenuComponent :submittalProp="submittal" :color="color" :showLabel="true" />
                         </v-col>
                         <v-col>

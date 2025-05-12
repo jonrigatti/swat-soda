@@ -30,7 +30,7 @@
           <v-sheet color="purple darken-2" class="d-flex flex-wrap justify-start pa-2 mb-1" style="width: 100%;">
             <div class="pa-1">
               <v-btn-toggle v-model="projectFilter" dense background-color="primary" dark multiple>
-                <v-btn color="purple" v-for="project in projectsStore.projects" :key="project.name" :value="project.name">
+                <v-btn color="purple" v-for="project in _.sortBy(projectsStore.projects,['name'])" :key="project.name" :value="project.name">
                   {{ project.name }}
                 </v-btn>
               </v-btn-toggle>
@@ -45,7 +45,7 @@
               <v-container>
                 <v-row>
                   <v-btn-toggle v-model="unitSelect" multiple dense background-color="primary" dark>
-                    <v-btn color="yellow darken-3" v-for="unit in units" :key="unit" :value="unit">
+                    <v-btn color="yellow darken-3" v-for="unit in units.sort()" :key="unit" :value="unit">
                       {{ unit }}
                     </v-btn>
                   </v-btn-toggle>
@@ -319,10 +319,10 @@ const tableHeaders = [
 const units = [
   'AA',
   'BB',
-  'CC',
+  'FF',
   'DD',
   'EE',
-  'FF'
+  'CC'
 ];
 const subdivisions = [
   'AAA',

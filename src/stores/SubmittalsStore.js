@@ -13,9 +13,15 @@ export const useSubmittalsStore = defineStore('SubmittalsStore', {
 
     // actions
     actions: {
-        // addSubmittal(submittal) {
-        //     this.submittals = [...this.submittals, submittal]
-        // },
+        addSubmittal(submittal) {
+            SubmittalDataService.add(submittal)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+        },
         // deleteSubmittal(id) {
         //     if(confirm('Delete submittal?')) {
         //     this.submittals = this.submittals.filter((submittal) => submittal.id !== id)

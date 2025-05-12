@@ -13,6 +13,7 @@
                     :model-value="dateConst"
                     class="my-2"
                     dense
+                    min-width="200"
                     clearable
                     :label="labelProp"
                     :prepend-icon="iconProp"

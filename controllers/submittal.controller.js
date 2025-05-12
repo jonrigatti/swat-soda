@@ -12,11 +12,14 @@ exports.create = (req, res) => {
 
     // Create a submittal
     const submittal = new Submittals({
-        description: req.body.description,
-        // published: req.body.published ? req.body.published : false,
         submittalID: req.body.submittalID,
-        needDate: req.body.needDate,        
-        // priority: req.body.priority ? req.body.priority : false,
+        description: req.body.description,
+        owner: req.body.owner,
+        receivedDate: req.body.receivedDate,
+        needDate: req.body.needDate,
+        dispositionDate: req.body.dispositionDate,
+        stakeholders: req.body.stakeholders,
+        violations: req.body.violations
     });
 
     // Save submittal in the database

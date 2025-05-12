@@ -6,7 +6,7 @@
                 <v-container class="pa-0 ma-0">
                     <v-row align-content="start">
                         <v-col cols="3">
-                            <v-text-field v-model="submittal.submittalID" :rules="rules.submittalID"
+                            <v-text-field v-model="submittal.submittalID" :rules="rules.submittalID"  min-width="150"
                                 label="Submittal ID"></v-text-field>
                         </v-col>
                         <v-col>
@@ -17,7 +17,7 @@
                 <v-container class="pa-0 ma-0">
                     <v-row>
                         <v-col cols="3">
-                            <v-text-field v-model.lazy="submittal.owner" label="Owner"></v-text-field>
+                            <v-text-field v-model.lazy="submittal.owner" label="Owner" min-width="150"></v-text-field>
                             <v-card-title class="pa-2">Projects</v-card-title>
                             <v-btn-toggle color="primary" multiple v-model="submittalProjects">
                                 <v-btn v-for="project in _.sortBy(projectsStore.projects,['name'])" :key="project.name" :value="project.name">
@@ -59,7 +59,7 @@
                             @add-violation="addViolation($event, index)" />
                     </v-row>
                 </v-container>
-                <v-btn class="mt-2" type="submit" block>Save submittal</v-btn>
+                <v-btn class="mt-2" type="submit" block @click="addSubmittal(submittal)">Add submittal</v-btn>
             </v-form>
         </v-sheet>
 
@@ -112,13 +112,19 @@ const rules = {
             if (value) return true
             return 'You must enter a submittal ID.'
         },
+    ],
+    submittalProjects: [
+        value => {
+            if (value) return true
+            return 'You must select at least one project.'
+        },
     ]
 };
 
 // Methods
-const saveSubmittal = (submittal) => {
+const addSubmittal = (submittal) => {
     // console.log('Submittals: ' + JSON.stringify(submittal));
-    submittalsStore.updateSubmittal(submittal);
+    submittalsStore.addSubmittal(submittal);
 }
 </script>
 
