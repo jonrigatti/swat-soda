@@ -49,7 +49,7 @@ exports.findAll = (req, res) => {
         const withVirtuals = []
         data.forEach(d => withVirtuals.push(d.toJSON({virtuals: true})));
         res.send(withVirtuals);
-        // console.log(data);
+        console.log(data);
     })
     .catch(err => {
         res.status(500).send({
