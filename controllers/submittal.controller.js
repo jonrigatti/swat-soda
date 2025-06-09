@@ -265,7 +265,7 @@ exports.findDynamic = (req, res) => {
         const withVirtuals = []
         data.forEach(d => withVirtuals.push(d.toJSON({virtuals: true})));
         res.send(withVirtuals);;
-        console.log('Data: ' + JSON.stringify(data));
+        // console.log('Data: ' + JSON.stringify(data));
     })
     .catch(err => {
         res.status(500).send({

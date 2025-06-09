@@ -118,7 +118,13 @@ const rules = {
             if (value) return true
             return 'You must select at least one project.'
         },
-    ]
+    ],
+    receivedDate: [
+        value => {
+            if (value) return true
+            return 'You must enter a received date.'
+        },
+    ],
 };
 
 // Methods

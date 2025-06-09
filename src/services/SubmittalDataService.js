@@ -47,7 +47,7 @@ class SubmittalDataService {
             switch(i.key.type) {
                 case "String":
                     queryString += `&$${i.andOr}[${j}][${i.key.name}][%24regex]=${i.value}`;
-                    queryString += `&$${i.andOr}[${j}][${i.key.name}][%24options]=i}`
+                    queryString += `&$${i.andOr}[${j}][${i.key.name}][%24options]=i`;
                     break;
                 case "Date":
                     // Have to search as a range because of timestamps

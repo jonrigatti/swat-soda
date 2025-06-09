@@ -183,7 +183,6 @@
 
     const getDynamicQuery = () => {
         console.log('Search: ' + JSON.stringify(queryFields.value));
-        // emit('dynamicQuery', queryFields)
         submittals.getDynamicQuery(queryFields.value);
     }
 </script>
