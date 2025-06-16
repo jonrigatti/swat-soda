@@ -408,7 +408,7 @@ const numberOfPages = computed(() => {
 });
 
 const contracts = computed(() => {
-  // console.log('projects:' + JSON.stringify(projectsStore.projects));
+  console.log('projects:' + JSON.stringify(projectsStore.projects));
   var fP = projectsStore.projects.filter(function (e) {
     return projectFilter.value.includes(e.name)
   });
@@ -436,6 +436,8 @@ const filteredSubmittals = computed(() => {
     }));
   });
 
+  console.log(`Contracts filter: ${JSON.stringify(contracts.value)}`);
+
   Object.entries(submittalFilter.value).forEach(entry => {
     const [key, value] = entry;
     if (value != null) {
@@ -445,7 +447,7 @@ const filteredSubmittals = computed(() => {
           keywords: `${value.length > 0 ? key + ':' : ''}${JSON.stringify(value).replace('[', '').replace(']', '')}`,
           predicate: 'OR'
         })
-        // console.log(`${value.length > 0 ? key + ':' : ''}${JSON.stringify(value).replace('[','').replace(']','')}`);
+        console.log(`${value.length > 0 ? key + ':' : ''}${JSON.stringify(value).replace('[','').replace(']','')}`);
       } else {
         fS = fS.filter(submittal => submittal[key] === value);
       }
@@ -453,6 +455,7 @@ const filteredSubmittals = computed(() => {
   }
   );
 
+  console.log('Filtered submittals:');
   console.log(fS);
   return fS;
 });
