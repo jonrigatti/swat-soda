@@ -55,7 +55,7 @@ export const useProjectsStore = defineStore('ProjectsStore', {
                     }
                     console.log(error.config);
                 });
-            // console.log(project._id)
+            console.log('Update contracts: ' + project._id)
         },
         async getProjects() {
             ProjectDataService.getAll()

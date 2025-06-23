@@ -51,7 +51,7 @@
                                     }}</v-card-subtitle>
                                     <v-card-text class="py-0 my-0 nondraggable-item">
                                         <v-text-field single-line v-model="s.driver" cols="8" label="Priority driver"
-                                            class="mx-6" @change="sortUpdate(project)"></v-text-field>
+                                            class="mx-6" @change="sortUpdate()"></v-text-field>
                                     </v-card-text>
                                 </v-card>
                                 <!-- </transition-group> -->
@@ -97,7 +97,7 @@
                                                             <v-list>
                                                                 <v-list-item>
                                                                     <v-btn icon
-                                                                        @click="deleteContract(contract.contractID)"><v-icon>mdi-check</v-icon></v-btn>
+                                                                        @click="deleteContract(project, contract.contractID)"><v-icon>mdi-check</v-icon></v-btn>
                                                                 </v-list-item>
                                                                 <v-list-item>
                                                                     <v-btn icon><v-icon>mdi-cancel</v-icon></v-btn>
@@ -120,7 +120,7 @@
                                                 <v-text-field v-model="newContract" label="Contract ID" max-width="150"
                                                     :rules="rules.contractID"></v-text-field>
                                                 <v-btn type="submit"
-                                                    @click="project.contracts.push({ contractID: newContract }); projectsStore.updateSubmittalPriorities(project); addContractForm ? newContractPanels = [] : newContractPanels = newContractPanels;"><v-icon>mdi-check</v-icon>
+                                                    @click="project.contracts.push({ contractID: newContract }); projectsStore.updateSubmittalPriorities(project); addContractForm ? newContractPanels = [] : newContractPanels = newContractPanels; newContract='';"><v-icon>mdi-check</v-icon>
                                                 </v-btn>
                                             </v-form>
                                         </v-expansion-panel-text>
@@ -146,7 +146,7 @@ const props = defineProps({
     project: {},
 });
 
-const project = ref(props.project);
+// const project = ref(props.project);
 // console.log(JSON.stringify(props.project));
 // console.log(JSON.stringify(project._rawValue));
 
@@ -155,20 +155,23 @@ const submittalsStore = useSubmittalsStore();
 const projectsStore = useProjectsStore();
 
 const sortUpdate = (project) => {
-    // console.log('priority: ' + JSON.stringify(project.prioritySubmittals));
+    console.log('project: ' + JSON.stringify(project));
+    console.log('priority: ' + JSON.stringify(project.prioritySubmittals));
     // console.log('unranked: ' + JSON.stringify(project.unrankedSubmittals));
 
     projectsStore.updateSubmittalPriorities(project);
     // emit('update-submittal-priorities', project)
 }
 
-const deleteContract = (contractID) => {
+const deleteContract = (project, contractID) => {
+    
+    console.log('project: ' + JSON.stringify(project));
     console.log(`Try to delete ${contractID} contract`);
-    console.log('Contracts: ' + JSON.stringify(project._rawValue.contracts));
-    project._rawValue.contracts = _.reject(project._rawValue.contracts, contract => {
+    console.log('Contracts: ' + JSON.stringify(project.contracts));
+    project.contracts = _.reject(project.contracts, contract => {
         return contract.contractID == contractID;
     });
-    project._value.contracts = _.reject(project._value.contracts, contract => {
+    project.contracts = _.reject(project.contracts, contract => {
         return contract.contractID == contractID;
     });
 
