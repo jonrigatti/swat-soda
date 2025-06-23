@@ -91,8 +91,19 @@
                                                     <v-btn icon>
                                                         <v-icon>mdi-file-pdf-box</v-icon>
                                                     </v-btn>
-                                                    <v-btn icon @click="deleteContract(contract.contractID)">
+                                                    <v-btn icon>
                                                         <v-icon>mdi-delete</v-icon>
+                                                        <v-menu activator="parent" location="center">
+                                                            <v-list>
+                                                                <v-list-item>
+                                                                    <v-btn icon
+                                                                        @click="deleteContract(contract.contractID)"><v-icon>mdi-check</v-icon></v-btn>
+                                                                </v-list-item>
+                                                                <v-list-item>
+                                                                    <v-btn icon><v-icon>mdi-cancel</v-icon></v-btn>
+                                                                </v-list-item>
+                                                            </v-list>
+                                                        </v-menu>
                                                     </v-btn>
                                                 </v-card-actions>
                                             </v-card>
@@ -152,7 +163,7 @@ const sortUpdate = (project) => {
 }
 
 const deleteContract = (contractID) => {
-    console.log(`Try to delete ${contractID} contract`);    
+    console.log(`Try to delete ${contractID} contract`);
     console.log('Contracts: ' + JSON.stringify(project._rawValue.contracts));
     project._rawValue.contracts = _.reject(project._rawValue.contracts, contract => {
         return contract.contractID == contractID;
@@ -160,10 +171,12 @@ const deleteContract = (contractID) => {
     project._value.contracts = _.reject(project._value.contracts, contract => {
         return contract.contractID == contractID;
     });
-    
+
     // console.log('New rawValue contract list: ' + JSON.stringify(project._rawValue.contracts));
     // console.log('New value contract list: ' + JSON.stringify(project._value.contracts));
     // console.log('New contract list: ' + JSON.stringify(project.contracts));
+    
+    projectsStore.updateContracts(project);
 }
 
 const addContractForm = ref(false);
