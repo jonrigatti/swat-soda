@@ -1,14 +1,10 @@
 <template>
   <div>
+    <SubmittalSearchComponent v-show="appStore.submittalSearch" />
     <v-container fluid>
-      <v-row v-if="appStore.submittalSearch">
-        <v-col class="pa-0 ma-0" cols="12">
-          <SubmittalSearchComponent />
-        </v-col>
-      </v-row>
       <v-row>
         <v-col>
-          <v-toolbar dark color="purple darken-3" class="mb-0 d-flex justify-start"
+          <v-toolbar dark color="purple-darken-2" class="mb-0 d-flex justify-start"
             v-if="appStore.submittalView === 'cards'">
             <v-text-field v-model="search" clearable flat solo-inverted hide-details prepend-inner-icon="mdi-magnify"
               label="Filter" class="pr-1"></v-text-field>
@@ -27,10 +23,11 @@
               </v-btn-toggle>
             </template>
           </v-toolbar>
-          <v-sheet color="purple darken-2" class="d-flex flex-wrap justify-start pa-2 mb-1" style="width: 100%;">
+          <v-sheet color="purple-darken-2" class="d-flex flex-wrap justify-start pa-2 mb-1" style="width: 100%;">
             <div class="pa-1">
               <v-btn-toggle v-model="projectFilter" dense background-color="primary" dark multiple>
-                <v-btn color="purple" v-for="project in _.sortBy(projectsStore.projects,['name'])" :key="project.name" :value="project.name">
+                <v-btn color="purple" v-for="project in _.sortBy(projectsStore.projects, ['name'])" :key="project.name"
+                  :value="project.name">
                   {{ project.name }}
                 </v-btn>
               </v-btn-toggle>
@@ -118,7 +115,8 @@
             <template v-slot:default="{ items }">
               <v-row>
                 <v-col v-for="(item) in items" :key="item._id" cols="12" sm="6" md="4" lg="3">
-                  <SubmittalComponent :submittal="item.raw" :color="submittalColor(item.raw.needDate, item.raw.dispositionDate)" />
+                  <SubmittalComponent :submittal="item.raw"
+                    :color="submittalColor(item.raw.needDate, item.raw.dispositionDate)" />
                 </v-col>
               </v-row>
             </template>
@@ -164,8 +162,9 @@
       <v-data-table :headers="tableHeaders" :items="filteredSubmittals" item-key="submittalID"
         :sort-by="['submittalID', 'owner']" :sort-desc="[false, true]" multi-sort show-expand v-model:expanded="expanded">
         <template v-slot:[`item.submittalID`]="{ item }">
-          <v-sheet :color="submittalColor(item.needDate, item.dispositionDate)" rounded class="d-flex justify-center pa-1 ma-0">{{ item.submittalID
-          }}</v-sheet>
+          <v-sheet :color="submittalColor(item.needDate, item.dispositionDate)" rounded
+            class="d-flex justify-center pa-1 ma-0">{{ item.submittalID
+            }}</v-sheet>
         </template>
 
         <template v-slot:[`item.description`]="props">
@@ -266,6 +265,7 @@ import { useAppStore } from '@/stores/AppStore';
 import { ref, computed } from 'vue';
 // import filter from 'lodash/filter';
 import { filter } from 'smart-array-filter';
+import { useDate } from 'vuetify';
 import dayjs from 'dayjs';
 import _ from 'lodash';
 
@@ -280,7 +280,8 @@ const appStore = useAppStore();
 
 // Data
 const calendar = ref(null);
-const calendarDate = ref(dayjs().format('YYYY-MM-DD').toString());
+// const calendarDate = ref([dayjs().format('YYYY-MM-DD').toString()]);
+const calendarDate = ref([new Date()]);
 const itemsPerPageArray = [5, 10, 20, 100];
 const search = ref('');
 const unitSelect = ref([]);
@@ -447,7 +448,7 @@ const filteredSubmittals = computed(() => {
           keywords: `${value.length > 0 ? key + ':' : ''}${JSON.stringify(value).replace('[', '').replace(']', '')}`,
           predicate: 'OR'
         })
-        console.log(`${value.length > 0 ? key + ':' : ''}${JSON.stringify(value).replace('[','').replace(']','')}`);
+        console.log(`${value.length > 0 ? key + ':' : ''}${JSON.stringify(value).replace('[', '').replace(']', '')}`);
       } else {
         fS = fS.filter(submittal => submittal[key] === value);
       }
@@ -503,5 +504,4 @@ const submittalEvents = computed(() => {
 .v-calendar-weekly {
   display: table;
   table-layout: fixed;
-}
-</style>
+}</style>
