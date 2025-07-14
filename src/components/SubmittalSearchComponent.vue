@@ -177,7 +177,7 @@ const stringQueryOperatorOptions = [
     },
     {
         text: '!=',
-        value: '$ne'
+        value: '$not'
     }
 ];
 

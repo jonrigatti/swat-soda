@@ -46,8 +46,9 @@ class SubmittalDataService {
         q.forEach(i => {
             switch(i.key.type) {
                 case "String":
-                    queryString += `&$${i.andOr}[${j}][${i.key.name}][%24regex]=${i.value}`;
-                    queryString += `&$${i.andOr}[${j}][${i.key.name}][%24options]=i`;
+                    // &$and[0][owner][$not][%24regex]=durn&$and[0][owner][$not][%24options]=i
+                    queryString += `&$${i.andOr}[${j}][${i.key.name}]${i.operator == '$not' && `[${i.operator}]`}[%24regex]=${i.value}`;
+                    queryString += `&$${i.andOr}[${j}][${i.key.name}]${i.operator == '$not' && `[${i.operator}]`}[%24options]=i`;
                     break;
                 case "Date":
                     // Have to search as a range because of timestamps
