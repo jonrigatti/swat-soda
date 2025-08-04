@@ -7,7 +7,7 @@
           <v-toolbar dark color="purple-darken-2" class="mb-0 d-flex justify-start"
             v-if="appStore.submittalView === 'cards'">
             <v-text-field v-model="search" clearable flat solo-inverted hide-details prepend-inner-icon="mdi-magnify"
-              label="Filter" class="pr-1"></v-text-field>
+              label="Filter" class="pr-1" density="compact"></v-text-field>
             <template>
               <v-spacer></v-spacer>
               <v-select v-model="sortBy" flat solo-inverted hide-details :items="keys" prepend-inner-icon="mdi-sort"
@@ -182,7 +182,7 @@
                   <component :is="actions"></component>
             </template>
           </v-confirm-edit> -->
-          <v-text-field v-model="props.item.description" compact variant="plain" :rules="[maxchars]" label="Edit"
+          <v-text-field v-model="props.item.description" density="compact" variant="plain" :rules="[maxchars]" label="Edit"
             single-line counter></v-text-field>
         </template>
 

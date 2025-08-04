@@ -1,37 +1,51 @@
 <template>
     <div>
-        <v-card class="pa-0 ma-2" width="250">
-            <v-card-title class="cyan pa-2 ma-0">
-                <v-text-field v-model="stakeholder.organization" placeholder="Organization" class="pa-0 ma-0"
-                    style="font-size: 1.5em;" dense></v-text-field>
-            </v-card-title>
-            <v-card-text class="px-2 py-0">
-                <v-text-field v-model="stakeholder.name" placeholder="Name" class="my-2" dense></v-text-field>
-                <v-select v-model="stakeholder.reviewType" :items="['Information', 'Independent', 'Manager', 'Peer']"
-                    label="Review type" dense></v-select>
-                <DatepickerComponent :date-prop="stakeholder.requestedDate" labelProp="Requested Date"
-                    iconProp="mdi-calendar-start" @update-date="(date) => stakeholder.requestedDate = date" />
-                <DatepickerComponent :date-prop="stakeholder.completedDate" labelProp="Completed Date"
-                    iconProp="mdi-calendar-check" @update-date="(date) => stakeholder.completedDate = date" />
-            </v-card-text>
-            <v-card-actions class="grey darken-4 py-0">
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                    <v-icon>mdi-delete</v-icon>
-                    <v-menu activator="parent" location="center">
-                        <v-list>
-                            <v-list-item>
-                                <v-btn icon @click="deleteStakeholder"><v-icon>mdi-check</v-icon></v-btn>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-btn icon><v-icon>mdi-cancel</v-icon></v-btn>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
-                </v-btn>
-            </v-card-actions>
-        </v-card>
-        <v-dialog v-model="deleteDialog" width="240">
+        <v-menu v-model="expand" location="top start" origin="top start" transition="scale-transition"
+            :close-on-content-click="false">
+            <template v-slot:activator="{ props }">
+                <v-chip v-bind="props" link label class="pa-2 ma-2"
+                    :color="stakeholder.completedDate != null ? 'green' : 'grey'"
+                    :append-icon="stakeholder.completedDate != null ? 'mdi-check' : ''">
+                    {{ stakeholder.organization }}
+                </v-chip>
+            </template>
+            <v-card class="pa-0 ma-2" width="250">
+                <v-toolbar :color="stakeholder.completedDate != null ? 'green' : 'grey-darken-2'">
+                    <v-toolbar-title :text="stakeholder.organization"></v-toolbar-title>
+                </v-toolbar>
+                <!-- <v-card-title class="cyan pa-2 ma-0">
+                    <v-text-field v-model="stakeholder.organization" placeholder="Organization" class="pa-0 ma-0" density="compact"
+                        style="font-size: 1.5em;"></v-text-field>
+                </v-card-title> -->
+                <v-card-text>
+                    <v-text-field v-model="stakeholder.name" placeholder="Name" density="compact"></v-text-field>
+                    <v-select v-model="stakeholder.reviewType" :items="['Information', 'Independent', 'Manager', 'Peer']"
+                        label="Review type" density="compact"></v-select>
+                    <DatepickerComponent :date-prop="stakeholder.requestedDate" labelProp="Requested Date"
+                        iconProp="mdi-calendar-start" @update-date="(date) => stakeholder.requestedDate = date" />
+                    <DatepickerComponent :date-prop="stakeholder.completedDate" labelProp="Completed Date"
+                        iconProp="mdi-calendar-check" @update-date="(date) => stakeholder.completedDate = date" />
+                </v-card-text>
+                <v-card-actions class="grey darken-4 py-0">
+                    <v-spacer></v-spacer>
+                    <v-btn icon>
+                        <v-icon>mdi-delete</v-icon>
+                        <v-menu activator="parent" location="center">
+                            <v-list>
+                                <v-list-item>
+                                    <v-btn icon @click="deleteStakeholder"><v-icon>mdi-delete</v-icon></v-btn>
+                                </v-list-item>
+                                <v-list-item>
+                                    <v-btn icon><v-icon>mdi-cancel</v-icon></v-btn>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-menu>
+
+        <!-- <v-dialog v-model="deleteDialog" width="240">
             <v-card>
                 <v-card-title class="pa-2 red darken-2">
                     Delete Stakeholder
@@ -51,7 +65,7 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
-        </v-dialog>
+        </v-dialog> -->
     </div>
 </template>
 
@@ -63,6 +77,8 @@ import dayjs from 'dayjs';
 const props = defineProps({
     stakeholder: {}
 });
+
+const expand = ref(false);
 
 // Data
 const dateMenus = ref({

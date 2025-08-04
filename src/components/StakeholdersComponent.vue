@@ -4,21 +4,37 @@
             <div v-for="(stakeholder, index) in stakeholders" :key="stakeholder._id">
                 <StakeholderComponent :stakeholder="stakeholder" @delete-stakeholder="deleteStakeholder(index)" />
             </div>
-            <v-btn rounded width="200" height="100" class="align-self-center ma-2"
-                @click="addingStakeholder = !addingStakeholder" v-show="!addingStakeholder">
+            <v-btn class="align-self-center ma-2" @click="addingStakeholder = !addingStakeholder"
+                v-show="!addingStakeholder">
                 <v-icon x-large>mdi-plus</v-icon>
             </v-btn>
+
             <v-card v-if="addingStakeholder" class="pa-0 ma-0">
-                <StakeholderComponent :stakeholder="newStakeholder" />
-                <v-card-actions>
-                    <v-btn @click="cancelNewStakeholder">
-                        <v-icon>mdi-cancel</v-icon>
-                    </v-btn>
-                    <v-spacer></v-spacer>
-                    <v-btn @click="addNewStakeholder">
-                        <v-icon>mdi-check</v-icon>
-                    </v-btn>
-                </v-card-actions>
+                <v-divider v-if="stakeholders.length > 0" class="py-2"></v-divider>
+                <v-card width="250">
+                    <v-toolbar class="px-3" color="grey-darken-2"> <v-text-field v-model="newStakeholder.organization"
+                            placeholder="Organization" variant="plain" density="compact"></v-text-field>
+                    </v-toolbar>
+                    <v-card-text>
+                        <v-text-field v-model="newStakeholder.name" placeholder="Name" density="compact"></v-text-field>
+                        <v-select v-model="newStakeholder.reviewType"
+                            :items="['Information', 'Independent', 'Manager', 'Peer']" label="Review type"
+                            density="compact"></v-select>
+                        <DatepickerComponent :date-prop="newStakeholder.requestedDate" labelProp="Requested Date"
+                            iconProp="mdi-calendar-start" @update-date="(date) => newStakeholder.requestedDate = date" />
+                        <DatepickerComponent :date-prop="newStakeholder.completedDate" labelProp="Completed Date"
+                            iconProp="mdi-calendar-check" @update-date="(date) => newStakeholder.completedDate = date" />
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-btn @click="cancelNewStakeholder">
+                            <v-icon>mdi-cancel</v-icon>
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn @click="addNewStakeholder">
+                            <v-icon>mdi-check</v-icon>
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
             </v-card>
         </div>
 
@@ -28,25 +44,22 @@
                     { title: 'Organization', align: 'start', key: 'organization' },
                     { title: 'Name', key: 'name' },
                     { title: 'Review Type', key: 'reviewType' },
-                    { title: 'Requested Date', key: 'requestedDate'},
-                    { title: 'Completed Date', key: 'completedDate'},
+                    { title: 'Requested Date', key: 'requestedDate' },
+                    { title: 'Completed Date', key: 'completedDate' },
                     { title: '', key: 'deleteStakeholder', sortable: false }
                 ]" :items="stakeholders" :sort-by="['organization', 'reviewType']" :sort-desc="[false, true]"
                     multi-sort disable-pagination hide-default-footer dense>
                     <template v-slot:[`item.organization`]="{ item }">
-                        <v-text-field v-model="item.organization" compact variant="plain"></v-text-field>
+                        <v-text-field v-model="item.organization" density="compact" variant="plain"></v-text-field>
                     </template>
 
                     <template v-slot:[`item.name`]="{ item }">
-                        <v-text-field v-model="item.name" compact variant="plain"></v-text-field>
+                        <v-text-field v-model="item.name" density="compact" variant="plain"></v-text-field>
                     </template>
-                    
+
                     <template v-slot:[`item.reviewType`]="{ item }">
-                        <v-select
-                            v-model="item.reviewType"
-                            :items="['Information', 'Independent', 'Manager', 'Peer']"
-                            compact variant="plain"
-                        ></v-select>
+                        <v-select v-model="item.reviewType" :items="['Information', 'Independent', 'Manager', 'Peer']"
+                            compact variant="plain"></v-select>
                     </template>
 
                     <template v-slot:[`item.requestedDate`]="{ item }">

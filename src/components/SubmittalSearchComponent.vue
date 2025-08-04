@@ -27,7 +27,7 @@
                                             :items="queryKeyOptions" class="pa-1 ma-1"></v-select>
                                     </v-col>
                                     <v-col cols="4">
-                                        <v-text-field v-model="qf.value" label="Value" class="pa-1 ma-1"
+                                        <v-text-field v-model="qf.value" density="compact" label="Value" class="pa-1 ma-1"
                                             v-if="qf.key.type != 'Date'"></v-text-field>
                                         <DatepickerComponent v-if="qf.key.type == 'Date'" :dateProp="qf.value"
                                             labelProp="Value" iconProp="mdi-calendar"

@@ -25,7 +25,7 @@
                                     }}</v-card-subtitle>
                                     <v-card-text class="py-0 my-0 nondraggable-item">
                                         <v-text-field single-line v-model="s.driver" cols="8" label="Priority driver"
-                                            class="mx-6" @change="sortUpdate(project)"></v-text-field>
+                                            class="mx-6" @change="sortUpdate(project)" density="compact"></v-text-field>
                                     </v-card-text>
                                 </v-card>
                                 <!-- </transition-group> -->
@@ -51,7 +51,7 @@
                                     }}</v-card-subtitle>
                                     <v-card-text class="py-0 my-0 nondraggable-item">
                                         <v-text-field single-line v-model="s.driver" cols="8" label="Priority driver"
-                                            class="mx-6" @change="sortUpdate()"></v-text-field>
+                                            class="mx-6" @change="sortUpdate()" density="compact"></v-text-field>
                                     </v-card-text>
                                 </v-card>
                                 <!-- </transition-group> -->
@@ -118,7 +118,7 @@
                                         <v-expansion-panel-text>
                                             <v-form @submit.prevent v-model="addContractForm">
                                                 <v-text-field v-model="newContract" label="Contract ID" max-width="150"
-                                                    :rules="rules.contractID"></v-text-field>
+                                                    :rules="rules.contractID" density="compact"></v-text-field>
                                                 <v-btn type="submit"
                                                     @click="project.contracts.push({ contractID: newContract }); projectsStore.updateSubmittalPriorities(project); addContractForm ? newContractPanels = [] : newContractPanels = newContractPanels; newContract='';"><v-icon>mdi-check</v-icon>
                                                 </v-btn>

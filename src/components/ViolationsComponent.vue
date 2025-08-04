@@ -27,6 +27,7 @@
 									<div class="subtitle-1 py-0">Limit</div>
 									<v-text-field
 										v-model.number="violation.limit"
+										density="compact"
 										class="body-2 px-2 py-0"
 									>
 									</v-text-field>
@@ -35,6 +36,7 @@
 									<div class="subtitle-1 py-0">Actual</div>
 									<v-text-field
 										v-model.number="violation.actual"
+										density="compact"
 										class="body-2 px-2 py-0"
 									>
 							</v-text-field>
@@ -52,6 +54,7 @@
 									<div class="subtitle-1 py-0">Drawing</div>
 									<v-text-field
 										v-model="violation.reference.drawing"
+										density="compact"
 										class="body-2 px-2 py-0"
 									>
 									</v-text-field>
@@ -60,6 +63,7 @@
 									<div class="subtitle-1 py-0">Coordinates</div>
 										<v-text-field
 											v-model="violation.reference.coordinates"
+											density="compact"
 											class="body-2 px-2 py-0"
 										>
 										</v-text-field>
@@ -70,6 +74,7 @@
 									<div class="subtitle-1 py-0">Revision</div>
 										<v-text-field
 											v-model="violation.reference.revision"
+											density="compact"
 											class="body-2 px-2 py-0"
 										>
 										</v-text-field>
@@ -78,6 +83,7 @@
 									<div class="subtitle-1 py-0">Date</div>
 										<v-text-field
 											v-model="violation.reference.date"
+											density="compact"
 											class="body-2 px-2 py-0"
 										>
 										</v-text-field>
@@ -93,6 +99,7 @@
 									<div class="subtitle-1 py-0">Chapter</div>
 									<v-text-field
 										v-model="violation.reference.chapter"
+										density="compact"
 										class="body-2 px-2 py-0"
 									>
 									</v-text-field>
@@ -101,6 +108,7 @@
 									<div class="subtitle-1 py-0">Paragraph</div>
 									<v-text-field
 										v-model="violation.reference.paragraph"
+										density="compact"
 										class="body-2 px-2 py-0"
 									>
 									</v-text-field>
@@ -111,6 +119,7 @@
 									<div class="subtitle-1 py-0">Revision</div>
 									<v-text-field
 										v-model.number="violation.reference.revision"
+										density="compact"
 										class="body-2 px-2 py-0"
 									>
 									</v-text-field>
@@ -119,6 +128,7 @@
 									<div class="subtitle-1 py-0">Date</div>
 									<v-text-field
 										v-model="violation.reference.date"
+										density="compact"
 										class="body-2 px-2 py-0"
 									>
 									</v-text-field>									
@@ -174,6 +184,7 @@
 							<v-col cols="12">
 								<v-text-field
 									label="Limit"
+									density="compact"
 									required
 									v-model.number="newViolation.limit"
 								></v-text-field>
@@ -181,6 +192,7 @@
 							<v-col cols="12">
 								<v-text-field
 									label="Actual"
+									density="compact"
 									required
 									v-model.number="newViolation.actual"
 								></v-text-field>
@@ -188,6 +200,7 @@
 							<v-col cols="12" v-if="referenceType==='code'">
 								<v-text-field
 									label="Chapter"
+									density="compact"
 									required
 									v-model="newViolation.reference.chapter"
 								></v-text-field>
@@ -195,6 +208,7 @@
 							<v-col cols="12" v-if="referenceType==='code'">
 								<v-text-field
 									label="Paragraph"
+									density="compact"
 									required                                
 									v-model="newViolation.reference.paragraph"
 								></v-text-field>
@@ -202,6 +216,7 @@
 							<v-col cols="12" v-if="referenceType==='drawing'">
 								<v-text-field
 									label="Drawing"
+									density="compact"
 									required
 									v-model="newViolation.reference.drawing"
 								></v-text-field>
@@ -209,6 +224,7 @@
 							<v-col cols="12" v-if="referenceType==='drawing'">
 								<v-text-field
 									label="Coordinates"
+									density="compact"
 									required                                
 									v-model="newViolation.reference.coordinates"
 								></v-text-field>
@@ -216,6 +232,7 @@
 							<v-col cols="12">
 								<v-text-field
 									label="Revision"
+									density="compact"
 									required                                
 									v-model.number="newViolation.reference.revision"
 								></v-text-field>
@@ -223,6 +240,7 @@
 							<v-col cols="12">
 								<v-text-field
 									label="Date"
+									density="compact"
 									required                                
 									v-model="newViolation.reference.date"
 								></v-text-field>

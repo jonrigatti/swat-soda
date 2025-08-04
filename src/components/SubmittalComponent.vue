@@ -8,11 +8,14 @@
                 </v-btn>
             </v-toolbar>
             <v-card-text>
-                <v-text-field v-model.lazy="submittal.description" label="Description"></v-text-field>
+                <v-text-field v-model.lazy="submittal.description" label="Description" density="compact"></v-text-field>
                 <v-container class="pa-0 ma-0">
                     <v-row>
                         <v-col>
-                            <v-text-field v-model.lazy="submittal.owner" label="Owner" min-width="200"></v-text-field>
+                            <v-text-field v-model.lazy="submittal.owner" label="Owner" min-width="200"
+                                density="compact"></v-text-field>
+                            Stakeholders
+                            <StakeholdersComponent :stakeholders="submittal.stakeholders" />
                             <PriorityMenuComponent :submittalProp="submittal" :color="color" :showLabel="true" />
                         </v-col>
                         <v-col>
@@ -29,12 +32,6 @@
                     </v-row>
                 </v-container>
             </v-card-text>
-            <v-card class="py-1" v-if="expanded">
-                <v-card-title class="pa-2">Stakeholders</v-card-title>
-                <v-card-text>
-                    <StakeholdersComponent :stakeholders="submittal.stakeholders" />
-                </v-card-text>
-            </v-card>
             <v-card class="py-1" v-if="expanded">
                 <v-card-title class="pa-2">
                     <ViolationsComponent :violations="submittal.violations" />

@@ -7,17 +7,17 @@
                     <v-row align-content="start">
                         <v-col cols="3">
                             <v-text-field v-model="submittal.submittalID" :rules="rules.submittalID"  min-width="150"
-                                label="Submittal ID"></v-text-field>
+                                label="Submittal ID" density="compact"></v-text-field>
                         </v-col>
                         <v-col>
-                            <v-text-field v-model.lazy="submittal.description" label="Description"></v-text-field>
+                            <v-text-field v-model.lazy="submittal.description" label="Description" density="compact"></v-text-field>
                         </v-col>
                     </v-row>
                 </v-container>
                 <v-container class="pa-0 ma-0">
                     <v-row>
                         <v-col cols="3">
-                            <v-text-field v-model.lazy="submittal.owner" label="Owner" min-width="150"></v-text-field>
+                            <v-text-field v-model.lazy="submittal.owner" label="Owner" min-width="150" density="compact"></v-text-field>
                             <v-card-title class="pa-2">Projects</v-card-title>
                             <v-btn-toggle color="primary" multiple v-model="submittalProjects">
                                 <v-btn v-for="project in _.sortBy(projectsStore.projects,['name'])" :key="project.name" :value="project.name">

@@ -31,6 +31,7 @@ const SubmittalSchema = new Schema(
         stakeholders: [
             {
                 name: String,
+                status: String,
                 organization: String,
                 reviewType: String,
                 requestedDate: Date,

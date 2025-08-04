@@ -12,7 +12,7 @@
                 <v-text-field
                     :model-value="dateConst"
                     class="my-2"
-                    dense
+                    density="compact"
                     min-width="200"
                     clearable
                     :label="labelProp"
